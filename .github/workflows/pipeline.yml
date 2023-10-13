@@ -2,7 +2,7 @@ name: Pipeline
 
 env:
   JAVA_VERSION: '17'
-  JAVA_DISTRIBUTION: 'adopt'
+  JAVA_DISTRIBUTION: 'temurin'
 
 permissions:
   checks: write
@@ -33,8 +33,9 @@ jobs:
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: ${{ env.JAVA_DISTRIBUTION }}
+          cache: 'gradle'
       - name: Check codestyle
-        run: ./gradlew checkstyleMain checkstyleTest checkstyleIntegrationTest
+        run: ./gradlew checkstyleMain checkstyleTest checkstyleIntegrationTest --no-daemon
 
   snyk:
     runs-on: ubuntu-latest
@@ -47,10 +48,11 @@ jobs:
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: ${{ env.JAVA_DISTRIBUTION }}
+          cache: 'gradle'
       - name: Snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: ./gradlew snyk-test
+        run: ./gradlew snyk-test --no-daemon
 
   test-and-report:
     runs-on: ubuntu-latest
@@ -65,11 +67,12 @@ jobs:
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: ${{ env.JAVA_DISTRIBUTION }}
+          cache: 'gradle'
       - name: Test
-        run: ./gradlew test
+        run: ./gradlew test --no-daemon
       - name: Coverage report and further checks
-        run: ./gradlew check
+        run: ./gradlew check --no-daemon
       - name: Sonar
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew sonar
+        run: ./gradlew sonar --no-daemon
