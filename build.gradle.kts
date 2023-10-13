@@ -46,7 +46,7 @@ testing {
             }
         }
 
-        val test by getting(JvmTestSuite::class) {
+        getByName<JvmTestSuite>("test") {
             dependencies {}
         }
 
@@ -85,6 +85,7 @@ tasks.withType<JacocoReport>() {
 
     reports {
         html.required.set(true)
+        xml.required.set(true)
     }
 }
 
@@ -100,10 +101,14 @@ tasks.sonar {
 sonar {
     properties {
         property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.login", env.fetch("SONAR_TOKEN"))
+        property("sonar.token", env.fetch("SONAR_TOKEN"))
         property("sonar.projectKey", "fanatixan_java-template")
         property("sonar.organization", "fanatixan")
         property("sonar.projectName", "java-template")
+        property("sonar.sources", "src/main")
+        property("sonar.tests", "src/test,src/it")
+        property("sonar.junit.reportPaths", "${buildDir}/test-results/test,${buildDir}/test-results/integrationTest")
+        property("sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
     }
 }
 
