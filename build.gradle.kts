@@ -100,8 +100,10 @@ tasks.sonar {
 sonar {
     properties {
         property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.projectKey", env.SONAR_PROJECT_KEY)
-        property("sonar.organization", env.SONAR_PROJECT_ORGANIZATION)
+        property("sonar.login", env.fetch("SONAR_TOKEN"))
+        property("sonar.projectKey", "fanatixan_java-template")
+        property("sonar.organization", "fanatixan")
+        property("sonar.projectName", "java-template")
     }
 }
 

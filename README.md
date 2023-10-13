@@ -11,7 +11,7 @@
 - ✅ checkstyle
 - ✅ coverage report
 - ✅ further checks
-- sonar
+- ✅ sonar
 - snyk
 
 ## coverage ✅
@@ -24,5 +24,11 @@
 - tech debt
 
 ## documentation
+
+### sonar
+
+token
+env vars
+manual analysis in administration/analysis methods
 
 ## cookiecutter
