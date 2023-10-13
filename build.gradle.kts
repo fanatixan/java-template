@@ -7,6 +7,7 @@ plugins {
     id("org.sonarqube") version "4.3.1.3277"
     id("io.snyk.gradle.plugin.snykplugin") version "0.5"
     id("co.uzzu.dotenv.gradle") version "2.0.0"
+    id("com.dorongold.task-tree") version "2.1.1"
 }
 
 group = "com.example"
@@ -115,7 +116,7 @@ sonar {
 
 snyk {
     setSeverity("low")
-    setApi(env.fetch("SNYK_TOKEN"))
+    setApi(env.fetch("SNYK_TOKEN", ""))
 }
 
 tasks.wrapper {

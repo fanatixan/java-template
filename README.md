@@ -25,6 +25,8 @@
 - notes
 - tech debt
 
+## git hook harmonization
+
 ## documentation
 
 ### sonar
