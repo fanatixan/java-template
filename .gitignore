@@ -37,3 +37,5 @@ build/
 generated/
 
 .env
+
+snyk

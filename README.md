@@ -1,5 +1,7 @@
 ## github actions
 
+- multiple steps with dependencies in-between
+
 ### client
  
 - ✅ conventional commit
@@ -12,7 +14,7 @@
 - ✅ coverage report
 - ✅ further checks
 - ✅ sonar
-- snyk
+- ✅ snyk
 
 ## coverage ✅
 
@@ -30,5 +32,10 @@
 token
 env vars
 manual analysis in administration/analysis methods
+
+### snyk
+
+token: https://github.com/snyk/actions#getting-your-snyk-token
+env vars
 
 ## cookiecutter

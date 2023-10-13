@@ -5,6 +5,7 @@ plugins {
     checkstyle
     jacoco
     id("org.sonarqube") version "4.3.1.3277"
+    id("io.snyk.gradle.plugin.snykplugin") version "0.5"
     id("co.uzzu.dotenv.gradle") version "2.0.0"
 }
 
@@ -91,7 +92,7 @@ tasks.withType<JacocoReport>() {
 
 checkstyle {
     isShowViolations = true
-    toolVersion = "10.2"
+    toolVersion = "10.12.1"
 }
 
 tasks.sonar {
@@ -110,6 +111,11 @@ sonar {
         property("sonar.junit.reportPaths", "${buildDir}/test-results/test,${buildDir}/test-results/integrationTest")
         property("sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
     }
+}
+
+snyk {
+    setSeverity("low")
+    setApi(env.fetch("SNYK_TOKEN"))
 }
 
 tasks.wrapper {
