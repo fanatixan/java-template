@@ -31,8 +31,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: "{{ '${{ env.JAVA_VERSION }}' }}"
-          distribution: "{{ '${{ env.JAVA_DISTRIBUTION }}' }}"
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
       - name: Check codestyle
         run: ./gradlew checkstyleMain checkstyleTest checkstyleIntegrationTest
 
@@ -45,8 +45,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: "{{ '${{ env.JAVA_VERSION }}' }}"
-          distribution: "{{ '${{ env.JAVA_DISTRIBUTION }}' }}"
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
       - name: Snyk
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
@@ -63,8 +63,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: "{{ '${{ env.JAVA_VERSION }}' }}"
-          distribution: "{{ '${{ env.JAVA_DISTRIBUTION }}' }}"
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
       - name: Test
         run: ./gradlew test
       - name: Coverage report and further checks
