@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("Dummy IT")
-public class DummyIT {
+class DummyIT {
 
     Dummy dummy;
 
