@@ -1,6 +1,6 @@
 ## github actions
 
-- multiple steps with dependencies in-between
+- ✅ multiple steps with dependencies in-between
 
 ### client
  
