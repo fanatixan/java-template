@@ -74,6 +74,10 @@ testing {
     }
 }
 
+tasks.withType<Test> {
+    finalizedBy("jacocoTestReport")
+}
+
 tasks.check {
     dependsOn(
         tasks.named("integrationTest"),
@@ -81,7 +85,7 @@ tasks.check {
     )
 }
 
-tasks.withType<JacocoReport>() {
+tasks.withType<JacocoReport> {
     dependsOn(tasks.named("integrationTest"))
     executionData.setFrom(fileTree(buildDir).include("/jacoco/*.exec"))
 
