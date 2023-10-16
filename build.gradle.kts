@@ -20,6 +20,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.apache.commons:commons-lang3:3.13.0")
+//    api("org.apache.commons:commons-collections4:4.4")
 }
 
 java {
@@ -84,7 +86,7 @@ tasks.check {
 
 tasks.withType<JacocoReport> {
     dependsOn(tasks.named("integrationTest"))
-    executionData.setFrom(fileTree(buildDir).include("/jacoco/*.exec"))
+    executionData.setFrom(fileTree(layout.buildDirectory).include("/jacoco/*.exec"))
 
     reports {
         html.required.set(true)
@@ -110,14 +112,21 @@ sonar {
         property("sonar.projectName", "java-template")
         property("sonar.sources", "src/main")
         property("sonar.tests", "src/test,src/it")
-        property("sonar.junit.reportPaths", "${buildDir}/test-results/test,${buildDir}/test-results/integrationTest")
-        property("sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/test/jacocoTestReport.xml")
+        property("sonar.junit.reportPaths", "${layout.buildDirectory}/test-results/test,${layout.buildDirectory}/test-results/integrationTest")
+        property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory}/reports/jacoco/test/jacocoTestReport.xml")
     }
 }
 
 snyk {
     setSeverity("low")
     setApi(env.fetch("SNYK_TOKEN", ""))
+    setArguments("--configuration-matching='^.*([cC]ompile|[iI]mplementation|[cC]lasspath|[aA]nnotationProcessor|[rR]untime).*$'")
+}
+
+versionCatalogUpdate {
+    keep {
+        plugins.add(libs.plugins.checkstyle)
+    }
 }
 
 tasks.wrapper {
