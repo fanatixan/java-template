@@ -86,7 +86,7 @@ tasks.check {
 
 tasks.withType<JacocoReport> {
     dependsOn(tasks.named("integrationTest"))
-    executionData.setFrom(fileTree(layout.buildDirectory).include("/jacoco/*.exec"))
+    executionData.setFrom(fileTree(layout.buildDirectory.asFile).include("/jacoco/*.exec"))
 
     reports {
         html.required.set(true)
@@ -112,8 +112,8 @@ sonar {
         property("sonar.projectName", "java-template")
         property("sonar.sources", "src/main")
         property("sonar.tests", "src/test,src/it")
-        property("sonar.junit.reportPaths", "${layout.buildDirectory}/test-results/test,${layout.buildDirectory}/test-results/integrationTest")
-        property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory}/reports/jacoco/test/jacocoTestReport.xml")
+        property("sonar.junit.reportPaths", "${layout.buildDirectory.dir("test-results/test").get()},${layout.buildDirectory.dir("test-results/integrationTest").get()}")
+        property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory.dir("reports/jacoco/test/jacocoTestReport.xml").get()}")
     }
 }
 
