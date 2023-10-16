@@ -1,15 +1,14 @@
 [versions]
 assertj = "3.24.2"
-checkstyle = "10.12.1"
-junit = "5.9.2"
-mockito = "5.5.0"
-
+checkstyle = "10.12.4"
 dotenv = "2.0.0"
+junit = "5.10.0"
+mockito = "5.6.0"
 snyk = "0.5"
-sonar = "4.3.1.3277"
-test-logger = "3.2.0"
-versions = "0.49.0"
+sonar = "4.4.1.3373"
+test-logger = "4.0.0"
 version-catalog-update = "0.8.1"
+versions = "0.49.0"
 
 [libraries]
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
@@ -17,9 +16,10 @@ junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "jun
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 
 [plugins]
+checkstyle = { id = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
 dotenv = { id = "co.uzzu.dotenv.gradle", version.ref = "dotenv" }
-versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
 snyk = { id = "io.snyk.gradle.plugin.snykplugin", version.ref = "snyk" }
-version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "version-catalog-update" }
 sonar = { id = "org.sonarqube", version.ref = "sonar" }
 test-logger = { id = "com.adarshr.test-logger", version.ref = "test-logger" }
+version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "version-catalog-update" }
+versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
