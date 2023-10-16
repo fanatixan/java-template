@@ -1,22 +1,19 @@
 plugins {
     java
     application
-    id("com.adarshr.test-logger") version "3.2.0"
+    alias(libs.plugins.test.logger)
     checkstyle
     jacoco
-    id("org.sonarqube") version "4.3.1.3277"
-    id("io.snyk.gradle.plugin.snykplugin") version "0.5"
-    id("co.uzzu.dotenv.gradle") version "2.0.0"
-    id("com.dorongold.task-tree") version "2.1.1"
+    alias(libs.plugins.sonar)
+    alias(libs.plugins.snyk)
+    alias(libs.plugins.dotenv)
+    alias(libs.plugins.versions)
+    alias(libs.plugins.version.catalog.update)
 }
 
 group = "com.example"
 version = "0.1.0-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
-
-val junitVersion = "5.9.2"
-val assertjVersion = "3.24.2"
-val mockitoVersion = "5.5.0"
 
 repositories {
     mavenCentral()
@@ -42,9 +39,9 @@ testing {
 
             dependencies {
                 implementation(project())
-                implementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
-                implementation("org.assertj:assertj-core:${assertjVersion}")
-                implementation("org.mockito:mockito-core:${mockitoVersion}")
+                implementation(libs.junit.jupiter)
+                implementation(libs.assertj.core)
+                implementation(libs.mockito.core)
             }
         }
 
@@ -97,7 +94,7 @@ tasks.withType<JacocoReport> {
 
 checkstyle {
     isShowViolations = true
-    toolVersion = "10.12.1"
+    toolVersion = libs.versions.checkstyle.get()
 }
 
 tasks.sonar {
